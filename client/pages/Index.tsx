@@ -58,12 +58,14 @@ export default function Index() {
                   Start Analyzing <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
-              <Button
-                variant="outline"
-                className="border-slate-700 text-slate-300 hover:bg-slate-800/50 px-8 py-6 text-lg"
-              >
-                Learn More
-              </Button>
+              <Link to="/how-it-works" className="flex">
+                <Button
+                  variant="outline"
+                  className="border-slate-700 text-slate-300 hover:bg-slate-800/50 px-8 py-6 text-lg"
+                >
+                  Learn More
+                </Button>
+              </Link>
             </div>
 
             <div className="flex items-center gap-6 mt-12 text-slate-400">
