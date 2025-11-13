@@ -18,6 +18,9 @@ interface SentimentResult {
     name: string;
     score: number;
     color: string;
+    gradientFrom: string;
+    gradientTo: string;
+    textColor: string;
   }[];
 }
 
