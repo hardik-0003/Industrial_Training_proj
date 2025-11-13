@@ -14,11 +14,16 @@ export default function Index() {
             </div>
             <span className="font-bold text-lg">ReviewAnalyzer</span>
           </div>
-          <Link to="/analyzer">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              Launch App
-            </Button>
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/saved-reviews" className="text-slate-300 hover:text-white text-sm font-medium transition-colors">
+              Saved Reviews
+            </Link>
+            <Link to="/analyzer">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                Launch App
+              </Button>
+            </Link>
+          </div>
         </div>
       </nav>
 
