@@ -13,7 +13,9 @@ interface SavedReview {
 
 export default function SavedReviews() {
   const [reviews, setReviews] = useState<SavedReview[]>([]);
-  const [filter, setFilter] = useState<"all" | "positive" | "neutral" | "negative">("all");
+  const [filter, setFilter] = useState<
+    "all" | "positive" | "neutral" | "negative"
+  >("all");
 
   useEffect(() => {
     // Load reviews from localStorage
@@ -36,7 +38,7 @@ export default function SavedReviews() {
   const deleteAllReviews = () => {
     if (
       window.confirm(
-        "Are you sure you want to delete all saved reviews? This cannot be undone."
+        "Are you sure you want to delete all saved reviews? This cannot be undone.",
       )
     ) {
       setReviews([]);
@@ -97,9 +99,7 @@ export default function SavedReviews() {
   };
 
   const filteredReviews =
-    filter === "all"
-      ? reviews
-      : reviews.filter((r) => r.sentiment === filter);
+    filter === "all" ? reviews : reviews.filter((r) => r.sentiment === filter);
 
   const stats = {
     total: reviews.length,
@@ -229,8 +229,7 @@ export default function SavedReviews() {
             <div className="space-y-4">
               {filteredReviews.length > 0 ? (
                 filteredReviews.map((review) => {
-                  const config =
-                    sentimentConfig[review.sentiment];
+                  const config = sentimentConfig[review.sentiment];
                   return (
                     <div
                       key={review.id}

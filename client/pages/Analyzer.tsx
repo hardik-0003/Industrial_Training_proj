@@ -2,14 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  ArrowLeft,
-  Zap,
-  Brain,
-  TrendingUp,
-  Copy,
-  Check,
-} from "lucide-react";
+import { ArrowLeft, Zap, Brain, TrendingUp, Copy, Check } from "lucide-react";
 
 interface SentimentResult {
   sentiment: "positive" | "neutral" | "negative";
@@ -441,7 +434,8 @@ Confidence: ${result.confidence}%`;
                         {config.label}
                       </div>
                       <div className="text-lg text-slate-300 mt-3">
-                        Confidence: <span className="font-bold">{result.confidence}%</span>
+                        Confidence:{" "}
+                        <span className="font-bold">{result.confidence}%</span>
                       </div>
                     </div>
 
@@ -503,19 +497,23 @@ Confidence: ${result.confidence}%`;
                       > = {
                         emerald: {
                           textColor: "text-emerald-400",
-                          bgGradient: "bg-gradient-to-r from-emerald-500 to-emerald-400",
+                          bgGradient:
+                            "bg-gradient-to-r from-emerald-500 to-emerald-400",
                         },
                         blue: {
                           textColor: "text-blue-400",
-                          bgGradient: "bg-gradient-to-r from-blue-500 to-blue-400",
+                          bgGradient:
+                            "bg-gradient-to-r from-blue-500 to-blue-400",
                         },
                         purple: {
                           textColor: "text-purple-400",
-                          bgGradient: "bg-gradient-to-r from-purple-500 to-purple-400",
+                          bgGradient:
+                            "bg-gradient-to-r from-purple-500 to-purple-400",
                         },
                       };
 
-                      const colors = emotionColors[emotion.color] || emotionColors.blue;
+                      const colors =
+                        emotionColors[emotion.color] || emotionColors.blue;
 
                       return (
                         <div key={index}>

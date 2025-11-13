@@ -15,7 +15,10 @@ export default function Index() {
             <span className="font-bold text-lg">ReviewAnalyzer</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link to="/saved-reviews" className="text-slate-300 hover:text-white text-sm font-medium transition-colors">
+            <Link
+              to="/saved-reviews"
+              className="text-slate-300 hover:text-white text-sm font-medium transition-colors"
+            >
               Saved Reviews
             </Link>
             <Link to="/analyzer">
@@ -47,9 +50,10 @@ export default function Index() {
             </h1>
 
             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-              Instantly analyze and classify the sentiment of any product review.
-              Powered by advanced AI, our tool cuts through informal language,
-              slang, and typos to deliver accurate insights in real-time.
+              Instantly analyze and classify the sentiment of any product
+              review. Powered by advanced AI, our tool cuts through informal
+              language, slang, and typos to deliver accurate insights in
+              real-time.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -94,13 +98,16 @@ export default function Index() {
                 <div className="bg-slate-700/50 rounded-lg p-4 border border-slate-600">
                   <p className="text-sm text-slate-400 mb-2">Example Review</p>
                   <p className="text-slate-200">
-                    "Amazing quality! Shipping was super fast and the product exceeded my expectations. Highly recommend!"
+                    "Amazing quality! Shipping was super fast and the product
+                    exceeded my expectations. Highly recommend!"
                   </p>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
                   <div className="bg-emerald-900/20 border border-emerald-700/50 rounded-lg p-3 text-center">
-                    <div className="text-2xl font-bold text-emerald-400">92%</div>
+                    <div className="text-2xl font-bold text-emerald-400">
+                      92%
+                    </div>
                     <div className="text-xs text-slate-400 mt-1">Positive</div>
                   </div>
                   <div className="bg-amber-900/20 border border-amber-700/50 rounded-lg p-3 text-center">
@@ -171,9 +178,7 @@ export default function Index() {
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-500/30 rounded-2xl p-12 text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Ready to Analyze Reviews?
-          </h2>
+          <h2 className="text-4xl font-bold mb-4">Ready to Analyze Reviews?</h2>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
             Start understanding customer sentiment instantly. No credit card
             required.

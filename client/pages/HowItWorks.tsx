@@ -130,9 +130,7 @@ export default function HowItWorks() {
                 className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:border-slate-600 transition-colors"
               >
                 <benefit.icon className="w-8 h-8 text-blue-400 mb-3" />
-                <h4 className="text-lg font-semibold mb-2">
-                  {benefit.title}
-                </h4>
+                <h4 className="text-lg font-semibold mb-2">{benefit.title}</h4>
                 <p className="text-slate-400">{benefit.description}</p>
               </div>
             ))}
@@ -165,9 +163,7 @@ export default function HowItWorks() {
                 <div className="w-2 h-2 rounded-full bg-blue-400" />
               </div>
               <div>
-                <h4 className="font-semibold text-lg mb-2">
-                  Instant Feedback
-                </h4>
+                <h4 className="font-semibold text-lg mb-2">Instant Feedback</h4>
                 <p className="text-slate-300">
                   No waiting, no processing delays. Analyze reviews as you write
                   them. Our real-time engine delivers insights in milliseconds,
