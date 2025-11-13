@@ -142,6 +142,25 @@ export default function Analyzer() {
     const newResult = analyzeSentiment(review);
     setResult(newResult);
     setHistory([{ review, result: newResult }, ...history.slice(0, 4)]);
+
+    // Save to localStorage
+    const newReviewEntry = {
+      id: Date.now().toString(),
+      text: review,
+      sentiment: newResult.sentiment,
+      confidence: newResult.confidence,
+      timestamp: new Date().toISOString(),
+    };
+
+    try {
+      const existingReviews = localStorage.getItem("reviewHistory");
+      const reviews = existingReviews ? JSON.parse(existingReviews) : [];
+      reviews.unshift(newReviewEntry);
+      localStorage.setItem("reviewHistory", JSON.stringify(reviews));
+    } catch (error) {
+      console.error("Error saving review:", error);
+    }
+
     setIsAnalyzing(false);
   };
 
