@@ -329,26 +329,49 @@ Confidence: ${result.confidence}%`;
                   </div>
 
                   <div className="space-y-5">
-                    {result.emotions.map((emotion, index) => (
-                      <div key={index}>
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="font-medium text-slate-200">
-                            {emotion.name}
-                          </span>
-                          <span
-                            className={`text-${emotion.color}-400 font-bold`}
-                          >
-                            {emotion.score}%
-                          </span>
+                    {result.emotions.map((emotion, index) => {
+                      const emotionColors: Record<
+                        string,
+                        {
+                          textColor: string;
+                          bgGradient: string;
+                        }
+                      > = {
+                        emerald: {
+                          textColor: "text-emerald-400",
+                          bgGradient: "bg-gradient-to-r from-emerald-500 to-emerald-400",
+                        },
+                        blue: {
+                          textColor: "text-blue-400",
+                          bgGradient: "bg-gradient-to-r from-blue-500 to-blue-400",
+                        },
+                        purple: {
+                          textColor: "text-purple-400",
+                          bgGradient: "bg-gradient-to-r from-purple-500 to-purple-400",
+                        },
+                      };
+
+                      const colors = emotionColors[emotion.color] || emotionColors.blue;
+
+                      return (
+                        <div key={index}>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="font-medium text-slate-200">
+                              {emotion.name}
+                            </span>
+                            <span className={`${colors.textColor} font-bold`}>
+                              {emotion.score}%
+                            </span>
+                          </div>
+                          <div className="w-full bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                            <div
+                              className={`h-full ${colors.bgGradient} transition-all duration-1000`}
+                              style={{ width: `${emotion.score}%` }}
+                            />
+                          </div>
                         </div>
-                        <div className="w-full bg-slate-700/50 rounded-full h-3 overflow-hidden">
-                          <div
-                            className={`h-full bg-gradient-to-r from-${emotion.color}-500 to-${emotion.color}-400 transition-all duration-1000`}
-                            style={{ width: `${emotion.score}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
