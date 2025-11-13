@@ -115,6 +115,7 @@ const analyzeSentiment = (text: string): SentimentResult => {
   ]);
 
   const negativeWords = new Map([
+    // English - Strong negative (weight: 2)
     ["awful", 2],
     ["terrible", 2],
     ["horrible", 2],
@@ -122,6 +123,7 @@ const analyzeSentiment = (text: string): SentimentResult => {
     ["disgusting", 2],
     ["atrocious", 2],
     ["abysmal", 2],
+    // English - Regular negative (weight: 1.5)
     ["bad", 1.5],
     ["hate", 1.5],
     ["poor", 1.5],
@@ -143,9 +145,34 @@ const analyzeSentiment = (text: string): SentimentResult => {
     ["complaint", 1.5],
     ["fail", 1.5],
     ["failed", 1.5],
+    // English - Mild negative (weight: 1)
     ["meh", 1],
     ["mediocre", 1],
     ["average", 1],
+    // Hindi - Strong negative (weight: 2)
+    ["बेकार", 2],
+    ["भयानक", 2],
+    ["भयंकर", 2],
+    ["बर्बाद", 2],
+    ["खतरनाक", 2],
+    // Hindi - Regular negative (weight: 1.5)
+    ["ख़राब", 1.5],
+    ["बुरा", 1.5],
+    ["दुर्भाग्यपूर्ण", 1.5],
+    ["असंतोषजनक", 1.5],
+    ["नापसंद", 1.5],
+    ["मायूस", 1.5],
+    ["हताश", 1.5],
+    ["टूटा", 1.5],
+    ["खराब", 1.5],
+    ["कमजोर", 1.5],
+    ["धीमा", 1.5],
+    ["अविश्वसनीय", 1.5],
+    ["व्यर्थ", 1.5],
+    ["निराशाजनक", 1.5],
+    ["दुःख", 1.5],
+    ["नकारात्मक", 1.5],
+    ["अप्रभावी", 1.5],
   ]);
 
   const intensifiers = new Map([
