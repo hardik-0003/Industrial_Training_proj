@@ -35,6 +35,7 @@ const analyzeSentiment = (text: string): SentimentResult => {
   }
 
   const positiveWords = new Map([
+    // English - Strong positive (weight: 2)
     ["amazing", 2],
     ["excellent", 2],
     ["fantastic", 2],
@@ -46,6 +47,7 @@ const analyzeSentiment = (text: string): SentimentResult => {
     ["brilliant", 2],
     ["phenomenal", 2],
     ["incredible", 2],
+    // English - Regular positive (weight: 1.5)
     ["great", 1.5],
     ["awesome", 1.5],
     ["good", 1.5],
@@ -77,6 +79,7 @@ const analyzeSentiment = (text: string): SentimentResult => {
     ["recommend", 1.5],
     ["worth", 1.5],
     ["value", 1.5],
+    // English - Mild positive (weight: 1)
     ["ok", 1],
     ["okay", 1],
     ["decent", 1],
@@ -84,6 +87,31 @@ const analyzeSentiment = (text: string): SentimentResult => {
     ["acceptable", 1],
     ["like", 1],
     ["enjoy", 1],
+    // Hindi - Strong positive (weight: 2)
+    ["शानदार", 2],
+    ["जबरदस्त", 2],
+    ["बेहतरीन", 2],
+    ["लाजवाब", 2],
+    ["गजब", 2],
+    ["परफेक्ट", 2],
+    // Hindi - Regular positive (weight: 1.5)
+    ["बढ़िया", 1.5],
+    ["अच्छा", 1.5],
+    ["सुंदर", 1.5],
+    ["पसंद", 1.5],
+    ["शानदार", 1.5],
+    ["प्रभावी", 1.5],
+    ["दमदार", 1.5],
+    ["बेहद", 1.5],
+    ["ख़ूबसूरत", 1.5],
+    ["शक्तिशाली", 1.5],
+    ["तेज़", 1.5],
+    ["मजबूत", 1.5],
+    ["विश्वसनीय", 1.5],
+    ["उपयोगी", 1.5],
+    ["आसान", 1.5],
+    ["खुश", 1.5],
+    ["संतुष्ट", 1.5],
   ]);
 
   const negativeWords = new Map([
