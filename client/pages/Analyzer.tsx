@@ -34,61 +34,151 @@ const analyzeSentiment = (text: string): SentimentResult => {
     };
   }
 
-  const positiveWords = [
-    "amazing",
-    "excellent",
-    "great",
-    "love",
-    "perfect",
-    "awesome",
-    "fantastic",
-    "wonderful",
-    "good",
-    "best",
-  ];
-  const negativeWords = [
-    "awful",
-    "terrible",
-    "bad",
-    "hate",
-    "worst",
-    "horrible",
-    "poor",
-    "disappointing",
-    "useless",
-    "waste",
-  ];
+  const positiveWords = new Map([
+    ["amazing", 2],
+    ["excellent", 2],
+    ["fantastic", 2],
+    ["superb", 2],
+    ["outstanding", 2],
+    ["exceptional", 2],
+    ["wonderful", 2],
+    ["perfect", 2],
+    ["brilliant", 2],
+    ["phenomenal", 2],
+    ["incredible", 2],
+    ["great", 1.5],
+    ["awesome", 1.5],
+    ["good", 1.5],
+    ["love", 1.5],
+    ["best", 1.5],
+    ["beautiful", 1.5],
+    ["impressive", 1.5],
+    ["nice", 1.5],
+    ["fine", 1.5],
+    ["terrific", 1.5],
+    ["splendid", 1.5],
+    ["durable", 1.5],
+    ["reliable", 1.5],
+    ["quality", 1.5],
+    ["useful", 1.5],
+    ["helpful", 1.5],
+    ["easy", 1.5],
+    ["simple", 1.5],
+    ["smooth", 1.5],
+    ["fast", 1.5],
+    ["quick", 1.5],
+    ["efficient", 1.5],
+    ["effective", 1.5],
+    ["happy", 1.5],
+    ["satisfied", 1.5],
+    ["pleased", 1.5],
+    ["delighted", 1.5],
+    ["impressed", 1.5],
+    ["recommend", 1.5],
+    ["worth", 1.5],
+    ["value", 1.5],
+    ["ok", 1],
+    ["okay", 1],
+    ["decent", 1],
+    ["adequate", 1],
+    ["acceptable", 1],
+    ["like", 1],
+    ["enjoy", 1],
+  ]);
+
+  const negativeWords = new Map([
+    ["awful", 2],
+    ["terrible", 2],
+    ["horrible", 2],
+    ["worst", 2],
+    ["disgusting", 2],
+    ["atrocious", 2],
+    ["abysmal", 2],
+    ["bad", 1.5],
+    ["hate", 1.5],
+    ["poor", 1.5],
+    ["disappointing", 1.5],
+    ["useless", 1.5],
+    ["waste", 1.5],
+    ["broken", 1.5],
+    ["defective", 1.5],
+    ["cheap", 1.5],
+    ["fragile", 1.5],
+    ["slow", 1.5],
+    ["unreliable", 1.5],
+    ["unhappy", 1.5],
+    ["unsatisfied", 1.5],
+    ["regret", 1.5],
+    ["wrong", 1.5],
+    ["problem", 1.5],
+    ["issue", 1.5],
+    ["complaint", 1.5],
+    ["fail", 1.5],
+    ["failed", 1.5],
+    ["meh", 1],
+    ["mediocre", 1],
+    ["average", 1],
+  ]);
+
+  const intensifiers = new Map([
+    ["very", 1.3],
+    ["extremely", 1.3],
+    ["incredibly", 1.3],
+    ["absolutely", 1.3],
+    ["really", 1.2],
+    ["quite", 1.1],
+    ["so", 1.2],
+  ]);
 
   const lowerText = text.toLowerCase();
   const words = lowerText.split(/\s+/);
 
-  let positiveCount = 0;
-  let negativeCount = 0;
+  let positiveScore = 0;
+  let negativeScore = 0;
+  let lastIntensifier = 1;
 
   words.forEach((word) => {
     const cleanWord = word.replace(/[^a-z]/g, "");
-    if (positiveWords.includes(cleanWord)) positiveCount++;
-    if (negativeWords.includes(cleanWord)) negativeCount++;
+
+    if (intensifiers.has(cleanWord)) {
+      lastIntensifier = intensifiers.get(cleanWord) || 1;
+    } else {
+      if (positiveWords.has(cleanWord)) {
+        positiveScore += (positiveWords.get(cleanWord) || 1) * lastIntensifier;
+      } else if (negativeWords.has(cleanWord)) {
+        negativeScore += (negativeWords.get(cleanWord) || 1) * lastIntensifier;
+      }
+      lastIntensifier = 1;
+    }
   });
 
-  const total = positiveCount + negativeCount;
+  const total = positiveScore + negativeScore;
   let sentiment: "positive" | "neutral" | "negative" = "neutral";
   let confidence = 0;
 
   if (total > 0) {
-    const positiveRatio = positiveCount / total;
-    if (positiveRatio > 0.6) {
+    const positiveRatio = positiveScore / total;
+    if (positiveRatio >= 0.65) {
       sentiment = "positive";
-      confidence = Math.min(95, 50 + positiveRatio * 50);
-    } else if (positiveRatio < 0.4) {
+      confidence = Math.min(95, Math.round(65 + positiveRatio * 30));
+    } else if (positiveRatio <= 0.35) {
       sentiment = "negative";
-      confidence = Math.min(95, 50 + (1 - positiveRatio) * 50);
+      confidence = Math.min(95, Math.round(65 + (1 - positiveRatio) * 30));
     } else {
       sentiment = "neutral";
-      confidence = 40 + Math.random() * 30;
+      confidence = Math.round(50 + Math.abs(0.5 - positiveRatio) * 20);
     }
   } else {
-    confidence = 30 + Math.random() * 20;
+    if (text.includes("!")) {
+      sentiment = "positive";
+      confidence = 55;
+    } else if (text.includes("?")) {
+      sentiment = "neutral";
+      confidence = 45;
+    } else {
+      sentiment = "neutral";
+      confidence = 40;
+    }
   }
 
   return {
